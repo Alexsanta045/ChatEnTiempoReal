@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev" : "nodemon server/index.js"
+   "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix front-chat\""
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
   }
 }
