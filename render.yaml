@@ -1,0 +1,25 @@
+services:
+  - name: front-chat
+    type: web  # Usa "web" si usas funcionalidades como SSR en Next.js; de lo contrario, puedes usar "static"
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      NODE_VERSION: 18
+    disk:
+      - name: persistent_disk
+        sizeGB: 1
+    staticPublishPath: out  # Usa "out" si exportas como sitio estático; de lo contrario, omite esta línea.
+
+  - name: backend
+    type: web
+    env: node
+    buildCommand: npm install
+    startCommand: npm run dev  # Cambia según la configuración de tu backend.
+    envVars:
+      NODE_VERSION: 18
+    disk:
+      - name: backend_disk
+        sizeGB: 1
+    ports:
+      - port: 3001  # Asegúrate de que tu backend escuche en este puerto.
